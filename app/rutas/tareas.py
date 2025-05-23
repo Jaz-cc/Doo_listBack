@@ -1,7 +1,11 @@
 from fastapi import APIRouter
+from app.database import get_connection
+from pydantic import BaseModel
 
 router = APIRouter()
 
+# Descripción: Devuelve una lista fija de tareas de ejemplo.
+# Retorna la Lista de tareas con id, titulo, descripcion, hora y status.
 @router.get("/añadirtarea")
 def tarea():
     tareas = [
@@ -11,7 +15,8 @@ def tarea():
     ]
     return tareas
 
-
+# Descripción: Retorna una lista diferente de tareas de ejemplo.
+# Lista de tareas con id, titulo, descripcion, hora y status.
 @router.get("/todas")
 def obtener_todas_las_tareas():
     tareass = [
@@ -20,3 +25,15 @@ def obtener_todas_las_tareas():
         {"id": 3, "titulo": "Ir al gimnasio", "descripcion": "Entrenamiento de pierna", "hora": "6:00pm", "status": "Pendiente"},
     ]
     return tareass
+
+class Tarea(BaseModel):
+    titulo:str
+    descripcion:str
+    hora:str
+    status:str
+
+# Descripción: Recibe una tarea nueva y devuelve un mensaje de confirmación junto con los datos enviados.
+# Retorna el Mensaje de éxito y los datos de la tarea añadida.
+@router.post("/añadir_tarea")
+def añadir_tarea(tarea: Tarea):
+    return {"mensaje": "Tarea añadida correctamente", **tarea.dict()}
