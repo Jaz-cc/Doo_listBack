@@ -10,6 +10,8 @@ from app.rutas.editar import router as editar_router
 from app.rutas.completadas import router as completadas_router
 from app.rutas.fechas import router as fechas_router
 from app.rutas.verificar import router as verificar_router
+from app.rutas.exportar import exportar_router
+
 
 app = FastAPI()
 
@@ -30,6 +32,7 @@ app.include_router(editar_router)
 app.include_router(completadas_router)
 app.include_router(fechas_router)
 app.include_router(verificar_router)
+app.include_router(exportar_router)
 
 @app.get("/")
 def root():
