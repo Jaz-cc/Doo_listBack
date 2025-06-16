@@ -172,6 +172,12 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
-
+barras.png
+reporte.pdf
 database.py
+reporte_tareas.pdf
+grafica_barras.png
+grafica_pastel.png
+pastel.png
+.gitignore
 __pycache__
